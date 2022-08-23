@@ -10,7 +10,7 @@ const userSchema = Schema({
     type: String,
     required: true,
   },
-  seconname: {
+  secondname: {
     type: String,
     required: true,
   },
