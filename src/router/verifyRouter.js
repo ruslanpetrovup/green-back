@@ -17,6 +17,7 @@ router.get("/verify", async (req, res, next) => {
           total,
         },
       });
+
       return;
     }
     res.status(403).json({
