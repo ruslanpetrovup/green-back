@@ -4,7 +4,7 @@ const logger = require("./utils/logger");
 const dotenv = require("dotenv");
 const app = express();
 const bodyParser = require("body-parser");
-const { user, verify, profile } = require("./router");
+const { user, verify } = require("./router");
 dotenv.config();
 
 app.use(bodyParser.json());
@@ -14,7 +14,6 @@ app.use(logger);
 
 app.use("/user", user);
 app.use("/auth", verify);
-app.use("/profile", profile);
 
 app.use((req, res) => {
   res.status(404);
