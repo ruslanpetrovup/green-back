@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const bcrypt = require("bcryptjs");
 const SchemaUser = require("../db/SchemaUser");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = Router();
 
