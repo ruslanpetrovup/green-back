@@ -45,7 +45,7 @@ router.post("/edit/:id", async (req, res) => {
   res.send(result);
 });
 router.delete("/delete/:id", async (req, res) => {
-  const { id } = req.params.id;
+  const { id } = req.params;
   const result = await SchemaCatalog.findByIdAndDelete({ _id: id });
   res.status(200);
   res.send(result);
