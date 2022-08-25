@@ -11,23 +11,27 @@ const catalogSchema = Schema({
     required: true,
   },
   room: {
-    type: Number,
+    type: String,
     required: true,
   },
   bed: {
-    type: Number,
+    type: String,
     required: true,
   },
   people: {
-    type: Number,
+    type: String,
     required: true,
   },
   stairs: {
-    type: Number,
+    type: String,
     required: true,
   },
   price: {
-    type: Number,
+    type: String,
+    required: true,
+  },
+  desc: {
+    type: String,
     required: true,
   },
 });

@@ -24,4 +24,30 @@ router.post("/add", async (req, res) => {
   res.status(201);
   res.send(result);
 });
+router.post("/edit/:id", async (req, res) => {
+  const { title, img, room, bed, people, stairs, price, desc } = req.body;
+  const { id } = req.params;
+  const catalog = await SchemaCatalog.findById({ _id: id });
+  const result = await SchemaCatalog.findByIdAndUpdate(
+    { _id: id },
+    {
+      title: title === "" ? catalog.title : title,
+      img: img === "" ? catalog.img : img,
+      room: room === "" ? catalog.room : room,
+      bed: bed === "" ? catalog.bed : bed,
+      people: people === "" ? catalog.people : people,
+      stairs: stairs === "" ? catalog.stairs : stairs,
+      price: price === "" ? catalog.price : price,
+      desc: desc === "" ? catalog.desc : desc,
+    }
+  );
+  res.status(201);
+  res.send(result);
+});
+router.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params.id;
+  const result = await SchemaCatalog.findByIdAndDelete({ _id: id });
+  res.status(200);
+  res.send(result);
+});
 module.exports = router;
