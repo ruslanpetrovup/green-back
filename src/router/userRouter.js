@@ -51,6 +51,23 @@ router.post("/edit-name", async (req, res) => {
   res.status(201);
   res.send(total);
 });
+
+router.post("/edit-avatar", async (req, res) => {
+  const { token, avatar } = req.body;
+  if (token === undefined) {
+    return res.send({ code: 400, body: "Not enough arguments" });
+  }
+  const { TOKEN_KEY } = process.env;
+  const { id } = jwt.verify(token, TOKEN_KEY);
+  const result = await SchemaUser.findById({ _id: id });
+
+  const total = await SchemaUser.findByIdAndUpdate(result.id, {
+    avatar: avatar === "" ? result.avatar : avatar,
+  });
+  res.status(201);
+  res.send(total);
+});
+
 router.post("/registration", async (req, res) => {
   const { email, name, secondname, password } = req.body;
   try {
@@ -62,6 +79,7 @@ router.post("/registration", async (req, res) => {
       });
     }
     const result = await SchemaUser.create({
+      avatar: "https://i.ibb.co/1GkCkN2/avatar.jpg",
       email: email,
       name: name,
       secondname: secondname,
