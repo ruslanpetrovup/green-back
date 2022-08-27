@@ -31,4 +31,13 @@ router.post("/add", async (req, res) => {
   res.send(result);
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const result = await SchemaComment.findByIdAndDelete(id);
+
+  res.status(200);
+  res.send(result);
+});
+
 module.exports = router;
