@@ -30,7 +30,10 @@ router.post("/login", async (req, res) => {
       code: 400,
     });
   } catch (err) {
-    return err;
+    res.status(400).json({
+      status: "Invalid email or password",
+      code: 400,
+    });
   }
 });
 
