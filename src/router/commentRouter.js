@@ -1,43 +1,12 @@
 const { Router } = require("express");
 const SchemaComment = require("../db/SchemaComment");
 const router = Router();
+const { get, add, deleteI } = require("../controllers/comment");
 
-router.get("/get", async (req, res) => {
-  const result = await SchemaComment.find();
-  res.status(200);
-  res.send(result);
-});
+router.get("/get", get);
 
-router.post("/add", async (req, res) => {
-  const { avatar, name, secondname, comment } = req.body;
+router.post("/add", add);
 
-  if (avatar === undefined) {
-    res.status(400);
-    res.send("not all fields are filled");
-    return;
-  } else if (name === undefined) {
-    res.status(400);
-    res.send("not all fields are filled");
-  } else if (secondname === undefined) {
-    res.status(400);
-    res.send("not all fields are filled");
-  } else if (comment === undefined) {
-    res.status(400);
-    res.send("not all fields are filled");
-  }
-
-  const result = await SchemaComment.create(req.body);
-  res.status(201);
-  res.send(result);
-});
-
-router.delete("/delete/:id", async (req, res) => {
-  const { id } = req.params;
-
-  const result = await SchemaComment.findByIdAndDelete(id);
-
-  res.status(200);
-  res.send(result);
-});
+router.delete("/delete/:id", deleteI);
 
 module.exports = router;
